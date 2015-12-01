@@ -19,6 +19,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'rubocop', require: false
 end
 
 group :development do
