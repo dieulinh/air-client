@@ -21,6 +21,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'rubocop', require: false
+  gem 'dotenv'
 end
 
 group :development do
