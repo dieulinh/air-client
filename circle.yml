@@ -1,3 +1,6 @@
+development:
+  pre:
+    - gem install byebug
 test:
   post:
     - bundle exec rubocop
