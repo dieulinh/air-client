@@ -1,3 +1,4 @@
 test:
+  pre: - gem install shoulda-matchers
   post:
     - bundle exec rubocop
