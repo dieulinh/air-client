@@ -1,4 +1,6 @@
+machine:
+  ruby:
+    version: 2.2.3p173
 test:
-  pre: - gem install shoulda-matchers
   post:
     - bundle exec rubocop
