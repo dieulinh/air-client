@@ -1,0 +1,7 @@
+All rooms
+<% unless @rooms.empty? %>
+  <% @rooms.each do |room| %>
+    <%= room.listing_name %>
+    <%= room.home_type %>
+  <% end %>
+<% end %>
