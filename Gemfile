@@ -24,6 +24,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'rubocop', require: false
   gem 'dotenv'
+  gem 'factory_girl_rails'
 end
 
 group :development do
