@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
     if @room.update(room_params)
       redirect_to @room, notice: "Your room has been changed"
     else
-      render 'edit'
+      render 'new'
     end
   end
 
@@ -41,8 +41,7 @@ class RoomsController < ApplicationController
     end
 
     def room_params
-      params.require(:room).permit(
-                                    :home_type,
+      params.require(:room).permit(:home_type,
                                     :room_type,
                                     :accommodate,
                                     :listing_name,
