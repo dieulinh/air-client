@@ -13,4 +13,15 @@ RSpec.describe RoomsController, type: :controller do
       expect(assigns(:rooms).size).to eq 3
     end
   end
+
+  describe 'POST #create' do
+    let!(:user) { FactoryGirl.create(:user) }
+    let(:room) { FactoryGirl.attributes_for(:room).merge(user: user) }
+    before { sign_in user }
+    context 'success creating a room' do
+      it 'should create a new room' do
+        expect{ post :create, room:  room }.to change(Room, :count).by 1
+      end
+    end
+  end
 end
