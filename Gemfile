@@ -20,7 +20,7 @@ gem 'omniauth-facebook'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'rubocop', require: false
   gem 'dotenv'
   gem 'factory_girl_rails'
@@ -28,6 +28,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
