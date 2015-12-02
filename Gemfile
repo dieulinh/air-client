@@ -25,6 +25,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'dotenv'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'awesome_print'
 end
 
