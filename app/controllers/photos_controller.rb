@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     room = photo.room
     photo.destroy
-    @photos = Photo.where(room_id: room.id)
+    @photos = room.photos
     respond_to :js
   end
 end
