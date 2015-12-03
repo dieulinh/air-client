@@ -144,7 +144,11 @@
           <div class="col-md-4">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <%= image_tag room.photos[0].image.url(:medium) %>
+                <% if room.photos.present? %>
+                  <%= image_tag room.photos.first.image.url(:medium) %>
+                <% else %>
+                  <%= image_tag('sample-room.jpg') %>
+                <% end %>
               </div>
               <div class="panel-body">
                 <%= link_to room.listing_name, room %><br>
