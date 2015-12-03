@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
   validates :fullname, presence: true, length: {maximum: 50}
+
   has_many :rooms
+  has_many :reservations
+
   def self.from_omniauth(auth)
     user = User.find_by_email(auth.info.email)
     return user if user
