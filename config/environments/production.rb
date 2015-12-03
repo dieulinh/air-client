@@ -91,4 +91,16 @@ Rails.application.configure do
     :user_name => Rails.application.secrets.mailjet_api_key,
     :password => Rails.application.secrets.mailjet_secret_key
   }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_protocol: 'https',
+    url: ':s3_domain_url',
+    path: '/production/:class/:photos/:id_partition/:style/:filename',
+    s3_credentials: {
+      bucket: ENV['AWS_BUCKET'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
 end
