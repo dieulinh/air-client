@@ -19,7 +19,6 @@ class RoomsController < ApplicationController
     if @room.save
       if params[:images]
         save_room_photos
-        @photos = @room.photos
       end
       redirect_to @room, notice: "Room created successfully"
     else
@@ -40,7 +39,6 @@ class RoomsController < ApplicationController
     if @room.update(room_params)
       if params[:images]
         save_room_photos
-        @photos = @room.photos
       end
       redirect_to @room, notice: "Your room has been changed"
     else
