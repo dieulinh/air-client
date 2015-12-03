@@ -143,6 +143,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)
+        map.setZoom(10);
         var marker = new google.maps.Marker({title: '<%= @room.address %>', position: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>) });
         marker.setMap(map);
       }
