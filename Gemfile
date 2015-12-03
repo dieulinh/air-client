@@ -16,6 +16,8 @@ gem 'toastr-rails'
 gem 'mailjet'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem "paperclip", "~> 4.3"
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -24,6 +26,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'dotenv'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'awesome_print'
 end
 
@@ -31,5 +34,10 @@ group :development do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'puma'
 end
 
