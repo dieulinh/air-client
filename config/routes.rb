@@ -6,7 +6,10 @@ Rails.application.routes.draw do
               path_names: { sign_in: 'login', sign_out: 'logout', edit: 'profile' },
               controllers: { omniauth_callbacks: :omniauth_callbacks, registrations: 'registrations' }
   resources :users, only: :show
-  resources :rooms
+  resources :rooms do
+    resource :reservation, only: :create
+  end
+
   resources :photos
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
