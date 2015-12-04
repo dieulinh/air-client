@@ -5,5 +5,6 @@ FactoryGirl.define do
     end_date Time.zone.tomorrow
     price 235
     total 235
+    room_id 1
   end
 end

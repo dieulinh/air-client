@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :rooms do
     resource :reservations, only: :create
   end
+  get '/preload', to: 'reservations#preload'
 
   resources :photos
   # The priority is based upon order of creation: first created -> highest priority.
