@@ -12,6 +12,7 @@ class RoomsController < ApplicationController
 
   def show
     @photos = @room.photos
+    @near_bys = @room.nearbys(10)
   end
 
   def create

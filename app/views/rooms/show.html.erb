@@ -93,6 +93,9 @@
       </div>
     </div>
 
+    <!-- booking -->
+
+
     <!-- Carousel -->
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
@@ -133,6 +136,21 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div id="map"></div>
+        <script type="text/javascript">
+          function initialize() {
+            var mapCanvas = document.getElementById('map');
+            var mapOptions = {
+              center: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>),
+              zoom: 10,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+            map.setZoom(10);
+            var marker = new google.maps.Marker({title: '<%= @room.address %>', position: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>) });
+            marker.setMap(map);
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
       </div>
     </div>
 
@@ -140,22 +158,25 @@
     <!-- Close by rooms -->
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <% for room in @room.nearbys(10) do %>
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <% if room.photos.present? %>
-                  <%= image_tag room.photos.first.image.url(:medium) %>
-                <% else %>
-                  <%= image_tag('sample-room.jpg') %>
-                <% end %>
-              </div>
-              <div class="panel-body">
-                <%= link_to room.listing_name, room %><br>
-                (<%= room.distance.round(2) %> smiles away)
+
+        <% if @near_bys %>
+          <% for room in @near_bys do %>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <% if room.photos.present? %>
+                    <%= image_tag room.photos.first.image.url(:medium) %>
+                  <% else %>
+                    <%= image_tag('sample-room.jpg') %>
+                  <% end %>
+                </div>
+                <div class="panel-body">
+                  <%= link_to room.listing_name, room %><br>
+                  (<%= room.distance.round(2) %> smiles away)
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -163,18 +184,3 @@
 
   </div>
 </div>
-<script type="text/javascript">
-  function initialize() {
-    var mapCanvas = document.getElementById('map');
-    var mapOptions = {
-      center: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>),
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(mapCanvas, mapOptions)
-    map.setZoom(10);
-    var marker = new google.maps.Marker({title: '<%= @room.address %>', position: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>) });
-    marker.setMap(map);
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
