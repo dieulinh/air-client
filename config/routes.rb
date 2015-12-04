@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   get '/preload', to: 'reservations#preload'
   get '/preview', to: 'reservations#preview'
+  get '/reservations', to: 'reservations#index'
 
   resources :photos
 end

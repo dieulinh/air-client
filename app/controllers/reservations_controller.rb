@@ -1,6 +1,10 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @reservations = Reservation.where(room_id: current_user.rooms)
+  end
+
   def preload
     room = Room.find(params[:room_id])
     today = Time.zone.today
