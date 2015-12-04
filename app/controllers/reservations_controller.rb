@@ -24,7 +24,7 @@ class ReservationsController < ApplicationController
 
   def conflict?(start_date, end_date)
     room = Room.find(params[:room_id])
-    reservations = room.reservations.where('? < start_date AND end_date < ?', start_date, end_date)
+    reservations = room.reservations.in_between_range(start_date, end_date)
     (reservations.size > 0 ? true : false)
   end
 
