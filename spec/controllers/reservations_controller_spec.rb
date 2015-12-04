@@ -11,5 +11,10 @@ RSpec.describe ReservationsController, type: :controller do
       get :preload, room_id: room.id
       expect(assigns(:reservations)).to include(tomorrow_reservation)
     end
+
+    it "show conflict if a new reservation has a reservation between start_date and end_date" do
+      get :preview, room_id: room.id, start_date: Time.zone.now, end_date: Time.zone.now + 18.days
+      expect(assigns(:conflict)).to eq true
+    end
   end
 end
