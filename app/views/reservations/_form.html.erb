@@ -1,16 +1,74 @@
+
 <%= form_for([@room, @room.reservations.new]) do |f| %>
-  <%= f.text_field :start_date %>
-  <%= f.text_field :end_date %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.hidden_field :price, value: @room.price %>
-  <br>
-  <%= f.submit "Book Now", class: "btn" %>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Check In</label>
+      <%= f.text_field :start_date, readonly: true, placeholder: "Start Date", class: "form-control" %>
+    </div>
+
+    <div class="col-md-6">
+      <label>Check In</label>
+      <%= f.text_field :end_date, readonly: true, placeholder: "End Date", class: "form-control" %>
+    </div>
+
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.hidden_field :price, value: @room.price %>
+    <%= f.hidden_field :total, id: 'reservation_total' %>
+
+    <div class="preview">
+      <h4><span id="message"></span></h4>
+      <table class="reservation-table">
+        <tbody>
+          <tr>
+            <td>Day(s)</td>
+            <td></td>
+          </tr>
+           <tr>
+            <td>Total</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <%= f.submit "Book Now", class: "btn btn-primary" %>
+    </div>
+  </div>
+
 <% end %>
+
 <script type="text/javascript">
-  $('#reservation_start_date').datepicker({
-    dateFormat: "dd-mm-yy"
+  function unavailable(date) {
+    dmy = date.getDate() +'-' + (date.getMonth()+1) + '-' + date.getFullYear();
+    return [$.inArray(dmy, unAvailableDates)==-1];
+  }
+  $(function(){
+    unAvailableDates = [];
+    $.ajax({
+      dataType: 'json',
+      url: '/preload',
+      data: {
+        'room_id':<%= @room.id %>
+      },
+      success: function(data){
+        console.log(data);
+        $.each(data, function(arr, obj){
+          console.log(obj);
+          for(var d = new Date(obj.start_date); d<= new Date(obj.end_date); d.setDate(d.getDate() +1)){
+            unAvailableDates.push($.datepicker.formatDate('d-m-yy', d));
+          }
+
+        });
+        console.log(unAvailableDates);
+      }
+    });
+    $('#reservation_start_date').datepicker({
+    dateFormat: "dd-mm-yy",
+    beforeShowDay: unavailable
   });
    $('#reservation_end_date').datepicker({
-    dateFormat: "dd-mm-yy"
+    dateFormat: "dd-mm-yy",
+    beforeShowDay: unavailable
   });
+  });
+
 </script>
