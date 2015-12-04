@@ -12,6 +12,10 @@ class ReservationsController < ApplicationController
     render json: @reservations
   end
 
+  def your_trips
+    @reservations = current_user.reservations
+  end
+
   def create
     @reservation = current_user.reservations.create(reservation_params)
     redirect_to @reservation.room, notice: "Your booking has been made. Thank you for using our service"

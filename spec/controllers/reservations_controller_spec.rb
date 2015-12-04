@@ -18,6 +18,15 @@ RSpec.describe ReservationsController, type: :controller do
       end
     end
 
+    describe 'GET #your_trips' do
+      let!(:new_reservation) { FactoryGirl.create(:reservation, user_id: user.id, room_id: room.id) }
+
+      it "list all reservations the current user made" do
+        get :your_trips
+        expect(assigns(:reservations)).to include new_reservation
+      end
+    end
+
     describe "GET #preload" do
       it "get all reservations unavailable next days" do
         get :preload, room_id: room.id
