@@ -15,13 +15,15 @@
       <div class="panel panel-body">
         <% @reservations.each do |reservation| %>
           <div class="row">
+            <div class="col-md-3">
+              <h4><%= reservation.start_date.strftime("%v") %></h4>
+            </div>
+            <div class="col-md-5">
+              <%= link_to room_path(reservation.room) do %>
+                <%= image_tag reservation.room.photos.first.image.url(:thumb) if reservation.room.photos.length > 0 %>
+              <% end %>
+            </div>
             <div class="col-md-2">
-              <%= image_tag reservation.room.photos.first.image.url(:thumb) if reservation.room.photos.length > 0 %>
-            </div>
-            <div class="col-md-6">
-              <h4><%= reservation.room.listing_name %></h4>
-            </div>
-            <div class="col-md-2 right">
               <%= image_tag gravatar_for(reservation.room.user), class: "image-circle avatar-medium" %>
             </div>
             <div class="col-md-2 right">
