@@ -18,8 +18,15 @@
             <div class="col-md-2">
               <%= image_tag reservation.room.photos.first.image.url(:thumb) if reservation.room.photos.length > 0 %>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
               <h4><%= reservation.room.listing_name %></h4>
+            </div>
+            <div class="col-md-2 right">
+              <%= image_tag gravatar_for(reservation.room.user), class: "image-circle avatar-medium" %>
+            </div>
+            <div class="col-md-2 right">
+              <h4>$<%= reservation.total %></h4>
+            </div>
           </div>
         <% end %>
       </div>
