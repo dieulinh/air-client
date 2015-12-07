@@ -1,0 +1,29 @@
+<% unless @conversations.present? %>
+  <% @conversations.each do |conversation| %>
+    <% other = current_user== conversation.sender ? conversation.recipient : conversation.sender %>
+    <div class="row">
+      <%= other.email %>
+      <%= link_to conversation_messages_path(conversation)  do %>
+        <div class="col-md-2">
+          <%= image_tag gravatar_for(other), class: "image-circle avatar-small" %>
+        </div>
+        <div class="col-md-3">
+          <%= other.fullname %>
+        </div>
+        <div class="col-md-3">
+          <%= conversation.messages.last.sent_time %>
+        </div>
+
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+<% @users.each do |user| %>
+  <% if user!=current_user %>
+    <%= user.email %><br>
+    <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
+      Send Message
+    <% end %>
+
+  <% end %>
+<% end %>
