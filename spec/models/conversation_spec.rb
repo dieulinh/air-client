@@ -26,14 +26,14 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
-  describe "Conversation.between(sender, recipient)" do
+  describe "Conversation.between(sender_id, recipient_id)" do
     let!(:user1) { FactoryGirl.create(:user, email: "user1@example.com") }
     let!(:user2) { FactoryGirl.create(:user, email: 'user2@example.com') }
     let!(:conversation1) { FactoryGirl.create(:conversation, sender_id: user1.id, recipient_id: user2.id) }
 
     it "show no conversation involve a user" do
-      expect(Conversation.between(user1, user2)).to eq [conversation1]
-      expect(Conversation.between(user2, user1)).to eq [conversation1]
+      expect(Conversation.between(user1.id, user2.id)).to eq [conversation1]
+      expect(Conversation.between(user2.id, user1.id)).to eq [conversation1]
     end
   end
 end
