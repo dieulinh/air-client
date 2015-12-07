@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :rooms do
     resource :reservations, only: :create
   end
+
+  resources :conversations do
+    resources :messages, only: [:create, :show, :index]
+  end
   get '/preload', to: 'reservations#preload'
   get '/preview', to: 'reservations#preview'
   get '/reservations', to: 'reservations#index'
