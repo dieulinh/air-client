@@ -4,7 +4,7 @@ RSpec.describe Reservation, type: :model do
 
   it { should validate_presence_of :start_date }
   it { should validate_presence_of :end_date }
-  context 'should have start_date is less than or equal end_date' do
+  describe 'should have start_date is less than or equal end_date' do
     let(:reservation) { FactoryGirl.build(:reservation, end_date: Time.zone.yesterday) }
 
     it "show errors message" do
