@@ -7,11 +7,12 @@
         <div class="col-md-2">
           <%= image_tag gravatar_for(other), class: "image-circle avatar-small" %>
         </div>
-        <div class="col-md-3">
-          <%= other.fullname %>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
+          <%= other.fullname %><br>
           <%= conversation.messages.last.sent_time %>
+        </div>
+        <div class="col-md-8">
+          <%= conversation.messages.last.content %>
         </div>
 
       <% end %>

@@ -1,2 +1,8 @@
-<%= render 'messages/messages' %>
+<div class="row">
+  <div class="col-md-3 text-center">
+    <%= image_tag gravatar_for(@other), class: "img-circle avatar-medium" %> <br>
+    <%= @other.fullname %>
+  </div>
+</div>
 <%= render 'messages/form' %>
+<%= render 'messages/messages' %>
