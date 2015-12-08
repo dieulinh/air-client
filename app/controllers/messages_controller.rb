@@ -2,8 +2,14 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @conversation = Conversation.find(params[:conversation_id])
-    @messages = @conversation.messages
+    @conversation = find_conversation
+    if current_user == @conversation.sender || current_user== @conversation.recipient
+      @other = current_user == @conversation.sender ? @conversation.recipient : current_user
+      @messages = @conversation.messages.order("created_at DESC")
+    else
+      redirect_to root_path, alert: "You don't have permission"
+    end
+
   end
 
   def new
@@ -13,8 +19,10 @@ class MessagesController < ApplicationController
   def create
     @conversation = find_conversation
     @message = @conversation.messages.new(message_params)
+    @messages = @conversation.messages.order("created_at DESC")
+
     if @message.save
-      redirect_to @conversation, notice: "You message has been sent"
+      redirect_to conversation_messages_url(@conversation), notice: "You message has been sent"
     else
       redirect_to @conversation, alert: "There is error while sending"
     end
