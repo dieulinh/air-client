@@ -1,4 +1,4 @@
-<% unless @conversations.present? %>
+<% if @conversations.present? %>
   <% @conversations.each do |conversation| %>
     <% other = current_user== conversation.sender ? conversation.recipient : conversation.sender %>
     <div class="row">
@@ -17,14 +17,5 @@
 
       <% end %>
     </div>
-  <% end %>
-<% end %>
-<% @users.each do |user| %>
-  <% if user!=current_user %>
-    <%= user.email %><br>
-    <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
-      Send Message
-    <% end %>
-
   <% end %>
 <% end %>

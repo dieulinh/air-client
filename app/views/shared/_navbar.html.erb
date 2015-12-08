@@ -39,8 +39,19 @@
                 <%= link_to "Log out", destroy_user_session_path, method: 'delete' %>
               </li>
             </ul>
+          </li>
         <% end %>
+        <li>
+          <%= link_to conversations_path do %>
+          <i class="fa fa-envelope-o"></i> Messages
+          <% end %>
         </li>
+        <li>
+          <%= link_to new_room_path do %>
+            <i class="fa fa-home fa-lg"></i> Become a Host
+          <% end %>
+        </li>
+
       </ul>
     </div><!--/.nav-collapse -->
   </div>
