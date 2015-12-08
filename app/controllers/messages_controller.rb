@@ -22,9 +22,9 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order("created_at DESC")
 
     if @message.save
-      redirect_to conversation_messages_url(@conversation), notice: "You message has been sent"
-    else
-      redirect_to @conversation, alert: "There is error while sending"
+      respond_to do |format|
+        format.js
+      end
     end
   end
 

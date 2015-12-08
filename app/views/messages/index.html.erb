@@ -4,5 +4,7 @@
     <%= @other.fullname %>
   </div>
 </div>
-<%= render 'messages/form' %>
-<%= render 'messages/messages' %>
+<%= render 'form' %>
+<div id="chat">
+  <%= render @messages %>
+</div>
