@@ -21,6 +21,14 @@ RSpec.describe Reservation, type: :model do
         expect(reservation.errors[:end_date]).to_not include("End date should greater than Start Date")
       end
     end
+  end
 
+  describe '.room_booked_by_user?(room, user)' do
+    let!(:user) { FactoryGirl.create(:user) }
+    let!(:room) { FactoryGirl.create(:room) }
+    let!(:reservation) { FactoryGirl.create(:reservation, user: user, room: room, start_date: Time.zone.yesterday, end_date: Time.zone.today) }
+    it "should return true if user has a reservation with a room" do
+      expect(Reservation.room_booked_by_user?(room, user)).to be true
+    end
   end
 end

@@ -10,4 +10,8 @@ class Reservation < ActiveRecord::Base
     return if end_date.blank? || start_date.blank?
     errors.add(:end_date, "End date should greater than Start Date") if (end_date.to_date < start_date.to_date)
   end
+
+  def self.room_booked_by_user?(room, user)
+    where(user: user, room: room).present?
+  end
 end
