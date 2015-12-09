@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
     else
       redirect_to root_path, alert: "You don't have permission"
     end
-
   end
 
   def new

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :conversation do
-    sender_id 1
-    recipient_id 1
+    sender { create(:user, email: "sender@example.com") }
+    recipient { create(:user, email: "recipient@example.com") }
   end
 end
