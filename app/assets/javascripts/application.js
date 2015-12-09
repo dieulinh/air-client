@@ -16,4 +16,5 @@
 //= require jquery_ujs
 //= require jquery-ui/datepicker
 //= require turbolinks
+//= require private_pub
 //= require_tree .
