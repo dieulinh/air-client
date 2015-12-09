@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Room, type: :model do
   it { should validate_presence_of :home_type }

@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Reservation, type: :model do
 
   it { should validate_presence_of :start_date }
   it { should validate_presence_of :end_date }
 
-  describe 'should have start_date is less than or equal end_date' do
+  describe "should have start_date is less than or equal end_date" do
 
     context "When user input start_date greater than end_date" do
       let(:reservation) { FactoryGirl.build(:reservation, start_date: Time.zone.today, end_date: Time.zone.yesterday) }
