@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :notify
 
   def index
     @reservations = Reservation.where(room_id: current_user.rooms)
@@ -12,13 +12,44 @@ class ReservationsController < ApplicationController
     render json: @reservations
   end
 
+  protect_from_forgery except: [:your_trips]
+
   def your_trips
-    @reservations = current_user.reservations
+    @reservations = current_user.reservations.where(status: true)
   end
 
   def create
     @reservation = current_user.reservations.create(reservation_params)
-    redirect_to @reservation.room, notice: "Your booking has been made. Thank you for using our service"
+    if @reservation
+      payment_info = {
+        business: "ngdieulinh-facilitator@hotmail.com",
+        cmd: "_xclick",
+        upload: 1,
+        notify_url: "http://airbnb-clone-mc.herokuapp.com/notify",
+        amount: @reservation.total,
+        item_name: @reservation.room.listing_name,
+        item_number: @reservation.id,
+        quantity: "1",
+        return: "http://airbnb-clone-mc.herokuapp.com/your_trips"
+      }
+      redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + payment_info.to_query
+    else
+      redirect_to @reservation.room, notice: "Oops, Something went wrong"
+    end
+  end
+
+  protect_from_forgery except: [:notify]
+
+  def notify
+    params.permit!
+    status = params[:payment_status]
+    reservation = Reservation.find(params[:item_number])
+    if status == "Completed"
+      reservation.update_attributes status: true
+    else
+      reservation.destroy
+    end
+    render nothing: true
   end
 
   def preview

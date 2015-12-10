@@ -11,26 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209064601) do
+ActiveRecord::Schema.define(version: 20151210022635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "converstaions", force: :cascade do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "converstations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.datetime "created_at",   null: false
@@ -69,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151209064601) do
     t.integer  "total"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
