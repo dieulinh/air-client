@@ -83,6 +83,9 @@ GEM
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -307,7 +310,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
-  dotenv
+  dotenv-rails
   factory_girl_rails
   faker
   font-awesome-rails
