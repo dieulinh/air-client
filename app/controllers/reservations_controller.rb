@@ -25,7 +25,7 @@ class ReservationsController < ApplicationController
         business: "ngdieulinh-facilitator@hotmail.com",
         cmd: "_xclick",
         upload: 1,
-        notify_url: "http://airbnb-clone-mc.herokuapp.com/your_trips/notify",
+        notify_url: "http://airbnb-clone-mc.herokuapp.com/notify",
         amount: @reservation.total,
         item_name: @reservation.room.listing_name,
         item_number: @reservation.id,
