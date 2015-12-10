@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+    <% @rooms.each do |room| %>
+      <div class="col-md-4">
+        <%= link_to room_path(room) do %>
+          <%= image_tag room_url(room) %><br>
+          <%= room.listing_name %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
