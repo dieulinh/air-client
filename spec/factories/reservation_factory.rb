@@ -6,5 +6,6 @@ FactoryGirl.define do
     price 235
     total 235
     room_id 1
+    status true
   end
 end
