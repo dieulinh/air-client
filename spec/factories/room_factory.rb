@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :room do
-    home_type 'House'
-    room_type 'Entire'
+    home_type "House"
+    room_type "Entire"
     bed_room 2
     bath_room 2
     accommodate 4

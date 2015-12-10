@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :rooms do
     resource :reservations, only: :create
+    resources :reviews, only: [:create, :destroy]
   end
 
   resources :conversations do
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   get '/preview', to: 'reservations#preview'
   get '/reservations', to: 'reservations#index'
   get '/your_trips', to: 'reservations#your_trips'
+
 
   resources :photos
 end

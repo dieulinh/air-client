@@ -1,0 +1,35 @@
+<h4> Average Rate is <span id="average_score"></span> with <%= @room.reviews.count %> user(s) </h4>
+<br>
+<div class="row">
+  <% @reviews.each do |review| %>
+    <div class="col-md-12">
+      <div class="col-md-1">
+        <%=image_tag gravatar_for(review.user), class: "img-circl avatar-small" %>
+      </div>
+      <div class="col-md-3">
+        <div id="review_<%= review.id %>"></div>
+      </div>
+      <div class="col-md-6">
+        <%= review.comment %>
+        <%= review.created_at.strftime("%v") %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "Remove my review", [@room, review], method: :delete, data: {confirm: "Are you sure to remove this review"} if current_user && current_user==review.user%>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $("#review_<%= review.id %>").raty({
+        path: "/assets",
+        score: <%= review.star %>,
+        readOnly : true
+      });
+    </script>
+  <% end %>
+</div>
+<script type="text/javascript">
+  $("#average_score").raty({
+    path: "/assets",
+    score: <%= @room.average_rating %>,
+    readOnly : true
+  });
+</script>

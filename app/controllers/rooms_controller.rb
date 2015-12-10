@@ -13,6 +13,9 @@ class RoomsController < ApplicationController
   def show
     @photos = @room.photos
     @near_bys = @room.nearbys(10)
+    @has_review = @room.reviews.find_by(user: current_user, room: @room).present? if current_user
+    @booked = Reservation.room_booked_by_user?(@room, current_user) if current_user
+    @reviews = @room.reviews
   end
 
   def create

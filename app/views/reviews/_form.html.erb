@@ -1,0 +1,21 @@
+<div class="row">
+  <h2>Your review</h2>
+  <div class="col-md-12">
+    <%= form_for([@room, @room.reviews.new]) do |f| %>
+      <div id="review_star">
+      </div>
+      <%= f.text_field :comment %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $("#review_star").raty({
+    scoreName : "review[star]",
+    path: "/assets",
+    score: 1
+  });
+</script>
