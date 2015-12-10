@@ -45,7 +45,7 @@ class ReservationsController < ApplicationController
     status = params[:payment_status]
     reservation = Reservation.find(params[:item_number])
     if status == "Completed"
-      reservations.update_attributes status: true
+      reservation.update_attributes status: true
     else
       reservation.destroy
     end

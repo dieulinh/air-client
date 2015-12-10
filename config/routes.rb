@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/preview', to: 'reservations#preview'
   get '/reservations', to: 'reservations#index'
   get '/your_trips', to: 'reservations#your_trips'
-  get '/notify', to: 'reservations#notify'
+  post '/notify', to: 'reservations#notify'
   post '/your_trips', to: 'reservations#your_trips'
 
 
