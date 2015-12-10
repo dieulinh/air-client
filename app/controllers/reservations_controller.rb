@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
   protect_from_forgery except: [:your_trips]
 
   def your_trips
-    @reservations = current_user.reservations
+    @reservations = current_user.reservations.where(status: true)
   end
 
   def create
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
     params.permit!
     status = params[:payment_status]
     reservation = Reservation.find(params[:item_number])
-    if status = "Completed"
+    if status == "Completed"
       reservations.update_attributes status: true
     else
       reservation.destroy
