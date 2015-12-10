@@ -25,12 +25,12 @@ class ReservationsController < ApplicationController
         business: "ngdieulinh-facilitator@hotmail.com",
         cmd: "_xclick",
         upload: 1,
-        notify_url: "http://c8204992.ngrok.io/notify",
+        notify_url: ENV["BUSINESS_HOST_NAME"]+"/notify",
         amount: @reservation.total,
         item_name: @reservation.room.listing_name,
         item_number: @reservation.id,
         quantity: "1",
-        return: "http://c8204992.ngrok.io/your_trips"
+        return: ENV["BUSINESS_HOST_NAME"] + "/your_trips"
       }
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + payment_info.to_query
     else
