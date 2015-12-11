@@ -19,7 +19,10 @@
     </div>
     <script type="text/javascript">
       $("#review_<%= review.id %>").raty({
-        path: "/assets",
+        starOff : '<%= image_path("star-off.png") %>',
+        starOn  : '<%= image_path("star-on.png") %>',
+        starHalf  : '<%= image_path("star-half.png") %>',
+        path: "",
         score: <%= review.star %>,
         readOnly : true
       });
@@ -28,7 +31,10 @@
 </div>
 <script type="text/javascript">
   $("#average_score").raty({
-    path: "/assets",
+    starOff : '<%= image_path("star-off.png") %>',
+    starOn  : '<%= image_path("star-on.png") %>',
+    starHalf  : '<%= image_path("star-half.png") %>',
+    path: "",
     score: <%= @room.average_rating %>,
     readOnly : true
   });
