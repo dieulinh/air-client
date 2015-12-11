@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post '/notify', to: 'reservations#notify'
   post '/your_trips', to: 'reservations#your_trips'
 
+  get '/search', to: 'pages#search'
 
   resources :photos
 end
