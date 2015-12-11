@@ -71,8 +71,10 @@
   <div class="col-md-12">
     <% @rooms.each do |room| %>
       <div class="col-md-4">
+        <%= image_tag room_url(room, "medium") %>
+        <br>
+        <%= image_tag gravatar_for(room.user), class: "img-circle avatar-small" %>
         <%= link_to room_path(room) do %>
-          <%= image_tag room_url(room) %><br>
           <%= room.listing_name %>
         <% end %>
       </div>
