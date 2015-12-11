@@ -34,6 +34,25 @@ RSpec.describe ReservationsController, type: :controller do
       end
     end
 
+    describe "POST #notify" do
+      context "When payment completed" do
+        let!(:room) { FactoryGirl.create(:room) }
+        let!(:reservation) { FactoryGirl.create(:reservation, room: room) }
+        it "change status of reservation" do
+          post :notify, payment_status: "Completed", item_number: reservation.id
+          reservation.reload
+          expect(reservation.status).to eq true
+        end
+      end
+      context "When payment failed" do
+        let!(:room) { FactoryGirl.create(:room) }
+        let!(:reservation) { FactoryGirl.create(:reservation, room: room) }
+        it "creates new record on Reservations data table" do
+          expect{post :notify, payment_status: "Failed", item_number: reservation.id}.to change(Reservation, :count).by -1
+        end
+      end
+    end
+
     describe "GET #preview" do
       it "show conflict if a new reservation has a reservation between start_date and end_date" do
         get :preview, room_id: room.id, start_date: Time.zone.now, end_date: Time.zone.now + 18.days
