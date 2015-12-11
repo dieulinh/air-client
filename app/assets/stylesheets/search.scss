@@ -1,0 +1,22 @@
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#sidebar {
+  float: right;
+  width: 340px;
+  #widget {
+    width: 340px;
+    height: 600px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+#article {
+  width: 560px;
+}
+.spacer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
