@@ -7,11 +7,7 @@ class PagesController < ApplicationController
     @rooms = Room.active
 
     if params[:search].present? && params[:search].strip != ""
-      session[:location_params] = params[:search]
-    end
-
-    if session[:location_params]
-      @rooms = @rooms.near(session[:location_params], 1, order: "distance")
+      @rooms = @rooms.near(params[:search], 1, order: "distance")
     end
     @search = @rooms.ransack(params[:q])
     @rooms = @search.result
