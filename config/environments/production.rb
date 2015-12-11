@@ -88,8 +88,8 @@ Rails.application.configure do
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => 'plain',
-    :user_name => Rails.application.secrets.mailjet_api_key,
-    :password => Rails.application.secrets.mailjet_secret_key,
+    :user_name => ENV["MAILJET_API_KEY"],
+    :password => ENV["MAILJET_SECRET_KEY"],
     :domain         => 'http://airbnb-clone-mc.herokuapp.com'
   }
 
