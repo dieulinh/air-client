@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     end
 
     if session[:location_params]
-      @rooms = @rooms.near(session[:location_params], 5, order: "distance")
+      @rooms = @rooms.near(session[:location_params], 1, order: "distance")
     end
     @search = @rooms.ransack(params[:q])
     @rooms = @search.result
@@ -36,8 +36,8 @@ class PagesController < ApplicationController
           arr_rooms.delete(room)
         end
       end
-      arr_rooms
     end
+    arr_rooms
   end
 
 end
