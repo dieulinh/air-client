@@ -77,11 +77,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.assets.raise_runtime_errors = true
+  config.assets.raise_runtime_errors = false
   config.action_mailer.default_url_options = { :host => 'http://airbnb-clone-mc.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
 # change to true to allow email to be sent during development
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     :address => "in.mailjet.com",
