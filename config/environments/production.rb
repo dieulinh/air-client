@@ -89,7 +89,8 @@ Rails.application.configure do
     :port => 587,
     :authentication => 'plain',
     :user_name => Rails.application.secrets.mailjet_api_key,
-    :password => Rails.application.secrets.mailjet_secret_key
+    :password => Rails.application.secrets.mailjet_secret_key,
+    :domain         => 'http://airbnb-clone-mc.herokuapp.com'
   }
 
   config.paperclip_defaults = {
