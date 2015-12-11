@@ -25,39 +25,48 @@
 <br>
 
 <div class="row">
-  <div class="col-md-4 col-sm-12">
-    <div class="discovery-card" style="background-image: url(<%= image_path('New_York.jpg') %>)">
-      <div class="va-container">
-        <div class="va-middle text-center">
-          <h2>
-            <strong>New York</strong>
-          </h2>
+  <%= link_to "/search?utf8=✓&search=New+York&start_date=&end_date=&commit=Search" do %>
+    <div class="col-md-4 col-sm-12">
+      <div class="discovery-card" style="background-image: url(<%= image_path('New_York.jpg') %>)">
+        <div class="va-container">
+          <div class="va-middle text-center">
+            <h2>
+              <strong>New York</strong>
+            </h2>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-4 col-sm-12">
-    <div class="discovery-card" style="background-image: url(<%= image_path('London.jpg') %>)">
-      <div class="va-container">
-        <div class="va-middle text-center">
-          <h2>
-            <strong>London</strong>
-          </h2>
+  <% end %>
+  <%= link_to "/search?utf8=✓&search=London&start_date=&end_date=&commit=Search" do %>
+    <div class="col-md-4 col-sm-12">
+      <div class="discovery-card" style="background-image: url(<%= image_path('London.jpg') %>)">
+        <div class="va-container">
+          <div class="va-middle text-center">
+            <h2>
+              <strong>London</strong>
+            </h2>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-4 col-sm-12">
-    <div class="discovery-card" style="background-image: url(<%= image_path('Berlin.jpg') %>)">
-      <div class="va-container">
-        <div class="va-middle text-center">
-          <h2>
-            <strong>Berlin</strong>
-          </h2>
+  <% end %>
+  <%= link_to "/search?utf8=✓&search=Berlin&start_date=&end_date=&commit=Search" do %>
+    <div class="col-md-4 col-sm-12">
+
+      <div class="discovery-card" style="background-image: url(<%= image_path('Berlin.jpg') %>)">
+        <div class="va-container">
+          <div class="va-middle text-center">
+            <h2>
+              <strong>Berlin</strong>
+            </h2>
+          </div>
         </div>
       </div>
+
     </div>
-  </div>
+  <% end %>
+
 </div>
 
 <br>
