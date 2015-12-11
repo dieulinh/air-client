@@ -4,7 +4,7 @@ class Reservation < ActiveRecord::Base
   validate :start_date_must_be_earlier_than_end_date
   validates :start_date, presence: true
   validates :end_date, presence: true
-  scope :in_between_range, -> (start_date, end_date) {where('? < start_date AND end_date < ?', start_date, end_date)}
+  scope :in_between_range, -> (start_date, end_date) {where("? < start_date AND end_date < ?", start_date, end_date)}
 
   def start_date_must_be_earlier_than_end_date
     return if end_date.blank? || start_date.blank?
